@@ -38,9 +38,9 @@ namespace GolfersAppliaction.Repositories.Concrets
             return context.Players.ToList().OrderBy(x => x.Score);
         }
 
-        public Player GetPlayerById(int Id)
+        public Player GetPlayerById(int id)
         {
-            return context.Players.Find(Id);
+            return context.Players.FirstOrDefault(x => x.Id == id);
         }
     }
 }

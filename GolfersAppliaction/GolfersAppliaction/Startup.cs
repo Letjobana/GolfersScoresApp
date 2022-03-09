@@ -1,4 +1,6 @@
 using GolfersAppliaction.Persistance;
+using GolfersAppliaction.Repositories.Abstracts;
+using GolfersAppliaction.Repositories.Concrets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,9 @@ namespace GolfersAppliaction
         {
 
             services.AddControllers();
+            services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PlayersDatabaseConnection")));
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GolfersAppliaction", Version = "v1" });
@@ -43,6 +47,7 @@ namespace GolfersAppliaction
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(origins => origins.AllowAnyOrigin().AllowAnyMethod());
 
             app.UseAuthorization();
 
