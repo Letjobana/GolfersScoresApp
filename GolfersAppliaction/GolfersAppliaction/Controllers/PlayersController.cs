@@ -16,11 +16,6 @@ namespace GolfersAppliaction.Controllers
             this.playerRepository = playerRepository;
         }
         [HttpGet]
-        public ActionResult Get()
-        {
-            return Ok("Just Testing");
-        }
-        [HttpGet]
         public ActionResult GetPlayers()
         {
             try
@@ -34,11 +29,14 @@ namespace GolfersAppliaction.Controllers
             }
         }
         [HttpPost]
-        public ActionResult AddPlayerScore(Player player)
+        public ActionResult AddPlayerScore([FromBody] Player player)
         {
             try
             {
-                return Ok(playerRepository.AddPlayerScore(player));
+                if (player == null)
+                    return BadRequest();
+                var addPlayer = playerRepository.AddPlayerScore(player);
+                return Ok(addPlayer);
             }
             catch (Exception)
             {

@@ -35,7 +35,7 @@ namespace GolfersAppliaction.Repositories.Concrets
 
         public IEnumerable<Player> GetAllPlayers()
         {
-            return context.Players.ToList().OrderBy(x => x.Score);
+            return context.Players.ToList().OrderByDescending(x => x.Score);
         }
 
         public Player GetPlayerById(int id)
