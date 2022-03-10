@@ -29,11 +29,11 @@ namespace GolfersAppliaction.Controllers
             }
         }
         [HttpPost]
-        public ActionResult AddPlayerScore([FromBody] Player player)
+        public ActionResult AddPlayerScore([FromForm] Player player)
         {
             try
             {
-                if (player == null)
+                if (player.Name == null)
                     return BadRequest();
                 var addPlayer = playerRepository.AddPlayerScore(player);
                 return Ok(addPlayer);

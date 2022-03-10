@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GolfersAppliaction.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220309094015_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220310000931_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

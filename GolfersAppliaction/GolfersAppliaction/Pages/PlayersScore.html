@@ -4,16 +4,23 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="../Scripts/bootstrap.min.css" rel="stylesheet" />
+
 </head>
 <body>
+
     <div id="foamtest-container" style="width: 800px; margin-left: 20%; margin-right: 20%;margin-top: 10px;">
-        <br />
-        <br />
-        <button type="submit" class="btn btn-primary">Add Score</button>
-        <br />
 
-
-        <table class="table table-hover">
+        <br />
+        <br />
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Score
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#playerScore">
+            View Winner
+        </button>
+        <br />
+        <br />
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Player's Name</th>
@@ -28,10 +35,74 @@
                 </tr>
             </tbody>
         </table>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Player's Name</label>
+                                <input type="text" required class="form-control" name="name" data-bind="value:name">
+                            </div>
+                            <div class="form-group">
+                                <label for="score" class="col-form-label">Score</label>
+                                <input type="number" required class="form-control" name="score" data-bind="value:score">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bind="click:addPlayer()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="playerScore" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleLabel"  style="text-align:center">Winners Score</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Player's Name</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody data-bind="foreach: leaderScore">
+                                    <tr>
+                                        <td> <span data-bind="text:name"></span></td>
+                                        <td> <span data-bind="text:price"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <script src="../Scripts/jquery-3.5.1.min.js"></script>
     <script src="../Scripts/jquery-3.5.1.js"></script>
+    <!--<script src="../Scripts/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <script src="../Scripts/knockout-3.5.1.js"></script>
     <script src="../Scripts/Player.js"></script>
     <script src="../Scripts/PlayerAjax.js"></script>
 </body>
 </html>
+
